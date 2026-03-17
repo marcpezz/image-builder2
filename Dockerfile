@@ -6,7 +6,6 @@ USER root
 
 ## -- ADD YOUR CODE HERE !! -- ##
 RUN /opt/conda/envs/pytorchgpu/bin/pip install \
-    packing \
     ninja \
     langchain \
     unsloth
