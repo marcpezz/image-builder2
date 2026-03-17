@@ -5,7 +5,7 @@ USER root
 
 RUN  conda init && \
     /opt/conda/bin/conda shell.bash activate pytorchgpu && \
-    /opt/conda/envs/pytorchgpu/bin/pip install flash-attn && \
+    /opt/conda/envs/pytorchgpu/bin/pip install flash-attn --no-build-isolation
 
 
 ## --------------------------- ##
