@@ -11,7 +11,8 @@ RUN /opt/conda/envs/pytorchgpu/bin/pip install \
     packaging \
     unsloth 
 
-RUN conda run -n pytorchgpu bash -c \
+RUN conda install -n pytorchgpu -y -c nvidia cuda-nvcc=12.4 cuda-toolkit=12.4 && \
+    conda run -n pytorchgpu bash -c \
     "CUDA_HOME=/opt/conda/envs/pytorchgpu \
      MAX_JOBS=4 \
      pip install flash-attn --no-build-isolation"
