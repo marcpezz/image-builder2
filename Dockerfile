@@ -8,12 +8,10 @@ RUN /opt/conda/envs/pytorchgpu/bin/pip install \
     packaging \
     unsloth
 
-RUN PYSITE=/opt/conda/envs/pytorchgpu/lib/python3.11/site-packages && \
-    /opt/conda/envs/pytorchgpu/bin/pip install nvidia-cuda-nvcc-cu12==12.8.93 && \
-    ln -sf ${PYSITE}/nvidia/cuda_nvcc/bin/nvcc /opt/conda/envs/pytorchgpu/bin/nvcc && \
-    cp -rn ${PYSITE}/nvidia/cuda_nvcc/include/* /opt/conda/envs/pytorchgpu/include/ && \
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends cuda-nvcc-12-8 && \
     conda run -n pytorchgpu bash -c \
-    "CUDA_HOME=/opt/conda/envs/pytorchgpu \
+    "CUDA_HOME=/usr/local/cuda-12.8 \
      MAX_JOBS=4 \
      pip install flash-attn --no-build-isolation"
 ## --------------------------- ##
