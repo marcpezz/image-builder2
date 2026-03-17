@@ -9,10 +9,8 @@ RUN /opt/conda/envs/pytorchgpu/bin/pip install \
     ninja \
     langchain \
     packaging \
-    unsloth \
-    flash-attn-cu12 
-    
-#RUN conda run -n pytorchgpu bash -c "MAX_JOBS=4 pip install flash-attn --no-build-isolation"
+    unsloth 
+RUN conda run -n pytorchgpu bash -c "MAX_JOBS=4 pip install flash-attn --no-build-isolation"
 ## --------------------------- ##
 
 # DO NOT EDIT USER VALUE
