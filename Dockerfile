@@ -8,11 +8,10 @@ RUN /opt/conda/envs/pytorchgpu/bin/pip install \
     packaging \
     unsloth
 
-RUN conda install -n pytorchgpu -y \
-    -c nvidia/label/cuda-12.8.0 \
-    cuda-nvcc=12.8.* \
-    cuda-crt-dev=12.8.* \
-    libcudacxx-dev=12.8.* && \
+RUN PYSITE=/opt/conda/envs/pytorchgpu/lib/python3.11/site-packages && \
+    /opt/conda/envs/pytorchgpu/bin/pip install nvidia-cuda-nvcc-cu12==12.8.93 && \
+    ln -sf ${PYSITE}/nvidia/cuda_nvcc/bin/nvcc /opt/conda/envs/pytorchgpu/bin/nvcc && \
+    cp -rn ${PYSITE}/nvidia/cuda_nvcc/include/* /opt/conda/envs/pytorchgpu/include/ && \
     conda run -n pytorchgpu bash -c \
     "CUDA_HOME=/opt/conda/envs/pytorchgpu \
      MAX_JOBS=4 \
