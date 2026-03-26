@@ -10,7 +10,10 @@ USER root
 RUN /opt/conda/bin/conda config --add channels conda-forge && \
     /opt/conda/bin/conda config --set channel_priority strict
   
-RUN /opt/conda/bin/conda install -n pytorchgpu -c conda-forge -y flash-attn
+## 3. -- flash-attn via conda-forge
+RUN CONDA_OVERRIDE_CUDA="12.4" \
+    /opt/conda/bin/conda install -n pytorchgpu -c conda-forge -y \
+    "flash-attn>=2.6,<2.7"
 #HOMEBREWD version - TODO try to install a proper release 
 #https://anaconda.org/channels/conda-forge/packages/flash-attn/overview
 RUN apt-get clean && \
