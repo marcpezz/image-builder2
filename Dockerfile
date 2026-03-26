@@ -7,12 +7,19 @@ USER root
 #    /opt/conda/bin/conda shell.bash activate pytorchgpu && \
 #    /opt/conda/envs/pytorchgpu/bin/pip install flash-attn --no-build-isolation
 
+
+RUN conda config --add channels conda-forge && \
+    conda config --set channel_priority strict
+
+RUN conda install -y -n flash-attn
 #RUN /opt/conda/envs/pytorchgpu/bin/pip install \
 #    https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3/flash_attn-2.8.3+cu128torch2.7-cp311-cp311-linux_x86_64.whl
 
 #HOMEBREWD version - TODO try to install a proper release 
 #https://anaconda.org/channels/conda-forge/packages/flash-attn/overview
-
+RUN apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*.deb && \
+    conda clean -afy 
 ## --------------------------- ##
 # DO NOT EDIT USER VALUE
 USER jovyan
