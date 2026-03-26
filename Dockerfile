@@ -11,8 +11,8 @@ USER root
 RUN /opt/conda/bin/conda config --add channels conda-forge && \
     /opt/conda/bin/conda config --set channel_priority strict
 
-RUN conda create -y -n flash-attn python=3.11 && \
-    conda install -y -n flash-attn
+RUN conda create -y -n flash-attn python=3.11 && 
+RUN /opt/conda/bin/conda  -n flash-attn install -c conda-forge -y flash-attn
 #HOMEBREWD version - TODO try to install a proper release 
 #https://anaconda.org/channels/conda-forge/packages/flash-attn/overview
 RUN apt-get clean && \
